@@ -1,11 +1,11 @@
 <template>
     <div class="options-panel">
-        <div>
-            <button @click="addInputRow">Add row</button>
-            <div>
-                <input type="checkbox">
-                <label>Auto-uppercase</label>
-            </div>
+        <div class="d-flex justify-space-between align-center">
+            <v-btn class="text-none" small rounded color="primary" min-width="130" @click="addInputRow">
+                <v-icon class="mr-1" size="18">mdi-plus</v-icon>
+                Add row
+            </v-btn>
+            <v-switch v-model="uppercase" label="Auto-uppercase" color="primary"></v-switch>
         </div>
         <div class="text-inputs">
             <LineInput v-for="(item, index) in inputRows" 
@@ -18,7 +18,7 @@
             <!-- <ColorInput />
             <ImageUpload /> -->
         </div>
-        <Slider label="Line height" min="0" max="100" value="25"/>
+        <Slider label="Line height" min="0" max="100" value="45"/>
         <Slider label="Padding" min="0" max="100" value="65"/>
         <div>
             <label>Choose poster width</label>
@@ -49,7 +49,8 @@ export default {
     },
     data: function() {
         return {
-            inputRows: ['this', 'is', 'awesome']
+            inputRows: ['this', 'is', 'awesome'],
+            uppercase: false
         }
     },
     methods: {

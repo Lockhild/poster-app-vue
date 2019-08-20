@@ -1,6 +1,8 @@
 <template>
     <div>
-        <button @click="isOpen=!isOpen">></button>
+        <button @click="isOpen=!isOpen">
+            <v-icon class="blue--text text--lighten-5" size="30">mdi-chevron-down</v-icon>
+        </button>
         <div class="modal" v-show="isOpen">
             <div class="modal-row">
                 <span class="color">Lorem, ipsum.</span>

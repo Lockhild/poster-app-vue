@@ -1,7 +1,15 @@
 <template>
-    <v-content class="main">
-        <OptionsPanel v-on:inputRows="getInputRows"/>
-        <DisplayPanel :inputRows="inputRows"/>
+    <v-content>
+        <v-container class="container">
+            <v-row>
+                <v-col class="col">
+                    <OptionsPanel v-on:inputRows="getInputRows"/>
+                </v-col>
+                <v-col class="col">
+                    <DisplayPanel :inputRows="inputRows"/> 
+                </v-col>
+            </v-row>
+        </v-container>
     </v-content>
 </template>
 
@@ -31,17 +39,14 @@ export default {
 </script>
 
 <style scoped>
-    .main {
+    .container {
+        min-height: 100vh;
         display: flex;
-        justify-content: space-around;
-        margin: 100px 0;
+        justify-content: center;
     }
-    .main:after {
-        content: "";
-        height: 100%;
-        width: 1px;
-        background: grey;
-        position: absolute;
-        top: -10%;
+    .col {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>

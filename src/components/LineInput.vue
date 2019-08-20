@@ -1,9 +1,7 @@
 <template>
-    <div>
-        <input type="text" placeholder="Enter a line..." v-model="text" 
-               @keyup="$emit('textEntered', text, id)">
-        <span @click="$emit('rowID', id)">X</span>
-    </div>
+    <v-text-field label="Poster row" v-model="text" @keyup="$emit('textEntered', text, id)">
+        <v-icon class="icon" slot="append" dense @click="$emit('rowID', id)">mdi-delete-outline</v-icon>
+    </v-text-field>
 </template>
 
 <script>
@@ -26,6 +24,11 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+    .icon {
+        transition: all .3s;
+    }
+    .icon:hover {
+        color: #d11a2a;
+    }
 </style>
