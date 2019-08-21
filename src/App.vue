@@ -23,3 +23,9 @@ export default {
   }),
 };
 </script>
+
+<style>
+  .label {
+    font-size: 16px;
+  }
+</style>

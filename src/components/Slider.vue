@@ -2,11 +2,12 @@
     <div>
         <v-subheader class="pl-0 label">{{label}}</v-subheader>
         <v-slider
-          thumb-label
-          :thumb-size="30"
-          :min="min"
-          :max="max"
-          :value="value"
+            class="mx-n2"
+            thumb-label
+            :thumb-size="30"
+            :min="min"
+            :max="max"
+            :value="value"
         ></v-slider>
     </div>
 </template>
