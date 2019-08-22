@@ -2,7 +2,7 @@
     <v-text-field 
         label="Poster row" 
         v-model="text" 
-        clearable="true"
+        clearable="clearable"
         counter="25"
         maxlength="25"
         @keyup="$emit('textEntered', text, id)">
@@ -14,13 +14,15 @@
 <script>
 export default {
     props: {
-        inputID: Number
+        inputID: Number,
+        inputText: String
     },
     name: 'LineInput',
     data: function() {
         return {
-            text: '',
-            id: null
+            text: this.inputText,
+            id: null,
+            clearable: true
         }
     },
     methods: {
@@ -36,6 +38,6 @@ export default {
         transition: all .3s;
     }
     .icon:hover {
-        color: #d11a2a;
+        color: #FD6F6F;
     }
 </style>

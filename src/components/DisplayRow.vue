@@ -1,5 +1,10 @@
 <template>
-  <span ref="textRow" v-bind:style="{fontSize: fontSize + 'px'}" v-on:change="changed">{{ textRow }}</span>
+  <span 
+    ref="textRow" 
+    v-bind:style="{fontSize: fontSize + 'px'}" 
+    @change="changed">
+
+    {{ textRow }}</span>
 </template>
 
 <script>
@@ -10,7 +15,7 @@ export default {
     },
     data: function() {
         return {
-            fontSize: 40
+            fontSize: 60
         }
     },
     methods: {
