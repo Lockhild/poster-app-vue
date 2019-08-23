@@ -73,6 +73,8 @@ export default {
         deleteRow: function(id) {
             this.$delete(this.inputRows, id);
             this.$emit('inputRows', this.inputRows);
+            // console.log(`ID: ${id}`);
+            // console.log(`Array: ${this.inputRows}`);
         }
     },
     mounted: function() {
@@ -87,7 +89,7 @@ export default {
     }
     .text-input {
         border: 1px solid #c2c2c2;
-        height: 30px;
+        height: 36px;
         border-radius: 5px;
         color: rgba(0, 0, 0, 0.87);
         padding: 0 8px;

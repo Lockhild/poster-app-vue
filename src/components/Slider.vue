@@ -1,16 +1,15 @@
 <template>
     <div>
         <div class="d-flex justify-space-between align-center">
-            <v-subheader class="pl-0 label">{{label}}</v-subheader>
-            <span class="v-counter theme--light">{{ counter }}</span>
+            <v-subheader class="pl-0 label">{{ label }}</v-subheader>
+            <span class="v-counter theme--light">{{ counter }} / {{ max }}</span>
         </div>
         <v-slider
             class="mx-n2 mt-n2"
             :thumb-size="30"
             :min="min"
             :max="max"
-            :value="value"
-            v-bind="counter"
+            v-model="counter"
         ></v-slider>
     </div>
 </template>
@@ -22,6 +21,8 @@
             return {
                 counter: this.value
             }
+        },
+        methods: {
         }
     }
 </script>

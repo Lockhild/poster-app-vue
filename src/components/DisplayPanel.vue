@@ -34,7 +34,8 @@ export default {
 <style>
     .text-area {
         width: 380px;
-        height: 550px;
+        height: 100%;
+        min-height: 500px;
         border: 1px solid #dcdcdc;
         display: flex;
         flex-direction: column;

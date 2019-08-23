@@ -3,10 +3,14 @@
         <v-container class="container">
             <v-row>
                 <v-col class="col">
-                    <OptionsPanel v-on:inputRows="getInputRows"/>
+                    <div class="scrollable pr-3">
+                        <OptionsPanel v-on:inputRows="getInputRows"/>
+                    </div>
                 </v-col>
                 <v-col class="col">
-                    <DisplayPanel :inputRows="inputRows"/> 
+                    <div class="scrollable pr-3">
+                        <DisplayPanel :inputRows="inputRows"/> 
+                    </div>
                 </v-col>
             </v-row>
         </v-container>
@@ -48,5 +52,11 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+    .scrollable {
+        max-height: 90vh;
+        max-width: 400px;
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 </style>
