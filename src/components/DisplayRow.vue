@@ -1,12 +1,14 @@
 <template>
   <span 
-    ref="textRowRef" 
+    class="span-text-row"
     v-bind:style="{fontSize: fontSize + 'px'}" >
 
     {{ textRow }}</span>
 </template>
 
 <script>
+import { log } from 'util';
+import { setTimeout } from 'timers';
 export default {
     name: 'DisplayRow',
     props: {
@@ -18,53 +20,43 @@ export default {
         }
     },
     methods: {
-        changed: function() {
-            console.log("changed");
-        },
-        enlargeText: function() {
-            // var textRow = this.$refs.textRowRef;
-            // var parentRow = textRow.parentElement;
-
-            // for(var i = 0; i < 10; i++) {
-            //     this.fontSize += 10;
-            //     console.log(`Text Row in loop: ${textRow.clientWidth}`);
-            //     textRow = this.$refs.textRowRef;
-            // }
-
-            // console.log(`Text Row: ${textRow.clientWidth}`);
-            // console.log(`Parent Row: ${parentRow.clientWidth}`);
-        }
     },
     watch: {
         textRow: function() {
-            // var textRow = this.$refs.textRow;
-            // var parentRow = textRow.parentElement;
+            setTimeout(() => {
+                enlargeTextOutside();
+            }, 1);
+        }
+    }
+}
 
-            // // var textRowWidth = textRow.getBoundingClientRect().width;
-            // // var textRowHeight = textRow.getBoundingClientRect().height;
-            // // var parentRowWidth = parentRow.getBoundingClientRect().width;
-            // // var parentRowHeight = parentRow.getBoundingClientRect().height;
+function enlargeTextOutside() {
 
-            // // console.log(parentRow.offsetWidth);
+    var elements = Array.from(document.getElementsByClassName("span-text-row"));
+    
+    for(var i = 0; i < elements.length; i++) {
+        var currentSize = 10 ;
+        elements[i].style.fontSize = currentSize + 'px';
+        console.log(elements[i].offsetWidth);
+        var elementWidth = elements[i].getBoundingClientRect().width;
+        var containerWidth = elements[i].parentElement.getBoundingClientRect().width - 2;
+        while(elementWidth < containerWidth) {
+            currentSize += 1;
+            console.log('Increased by 2px');
 
-            // this.fontSize += 10;
+            elements[i].style.fontSize = currentSize + 'px';
+            elementWidth = elements[i].getBoundingClientRect().width;
 
-            // for(var i = 0; i < 100; i++) {
-            //     console.log("textRow.offsetWidth: " + textRow.offsetWidth);
-            //     console.log("parentRow.offsetWidth: " + parentRow.offsetWidth);
-            //     if(textRow.offsetWidth < parentRow.offsetWidth) {
-            //         this.fontSize++;
-            //         console.log("fontSize: " + this.fontSize);
-            //     } else {
-            //         break;
-            //     }
-            // }
-            this.enlargeText();
+            if(currentSize > 350) {
+                break;
+            }
         }
     }
 }
 </script>
 
-<style>
-
+<style scoped>
+    .span-text-row {
+        white-space: nowrap;
+    }
 </style>

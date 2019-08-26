@@ -2,7 +2,7 @@
     <v-content>
         <v-container class="container">
             <v-row>
-                <v-col class="col">
+                <v-col class="col line-separator">
                     <div class="scrollable pr-3">
                         <OptionsPanel v-on:inputRows="getInputRows"/>
                     </div>
@@ -58,5 +58,8 @@ export default {
         max-width: 400px;
         overflow-y: auto;
         overflow-x: hidden;
+    }
+    .line-separator {
+        border-right: 1px solid #c2c2c2;
     }
 </style>
