@@ -5,7 +5,11 @@
                 <v-icon class="mr-1" size="18">mdi-plus</v-icon>
                 Add row
             </v-btn>
-            <v-switch class="uppercase-switch" v-model="uppercase" label="Auto-uppercase" color="primary"></v-switch>
+            <v-switch 
+                class="uppercase-switch" 
+                v-model="uppercase" 
+                label="Auto-uppercase" 
+                color="primary"></v-switch>
         </div>
         <div class="text-inputs mt-6">
             <LineInput v-for="(item, index) in inputRows" 
@@ -17,7 +21,7 @@
                        class="mt-n2" />
         </div>
         <v-divider class="mt-6 mb-5"></v-divider>
-        <ColorInput />
+        <ColorInput @colorValue="emitPosterOptions" />
         <v-divider class="mt-10 mb-6"></v-divider>
         <Slider label="Line height" min="0" max="100" value="45"/>
         <Slider class="mt-n4" label="Padding" min="0" max="100" value="65"/>
@@ -57,8 +61,13 @@ export default {
     },
     data: function() {
         return {
-            inputRows: ['you', 'are', 'breathtaking'],
-            uppercase: false
+            inputRows: ['the sun is up', 'the sky is blue', 'it\'s beautiful', 'and so are you'],
+            uppercase: false,
+            posterOptions: {
+                background: '#fff',
+                lineHeight: 8,
+                padding: 20
+            }
         }
     },
     methods: {
@@ -67,14 +76,16 @@ export default {
             this.$emit('inputRows', this.inputRows);
         },
         addInputRow: function() {
-            this.inputRows.push('row');
+            this.inputRows.push('');
             this.$emit('inputRows', this.inputRows);
         },
         deleteRow: function(id) {
             this.$delete(this.inputRows, id);
             this.$emit('inputRows', this.inputRows);
-            // console.log(`ID: ${id}`);
-            // console.log(`Array: ${this.inputRows}`);
+        },
+        emitPosterOptions(colorValue) {
+            this.posterOptions.background = colorValue;
+            this.$emit('posterOptions', this.posterOptions);
         }
     },
     mounted: function() {

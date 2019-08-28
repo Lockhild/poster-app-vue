@@ -3,8 +3,8 @@
       <v-subheader class="pl-0 label">Poster background</v-subheader>
       <div class="d-flex justify-space-between">
         <div class="color-input d-flex align-center">
-          <input type="text">
-          <ColorPicker />
+          <input type="text" :value="color">
+          <ColorPicker @colorValue="emitColorValue" />
         </div>
         <v-btn 
           outlined 
@@ -21,6 +21,17 @@
       name: 'ColorInput',
       components: {
         ColorPicker
+      },
+      data: function() {
+        return {
+          color: "#A8A8A4"
+        }
+      },
+      methods: {
+        emitColorValue(value) {
+          this.color = value;
+          this.$emit("colorValue", value);
+        }
       }
     }
 </script>

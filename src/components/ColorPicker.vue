@@ -11,7 +11,7 @@
       </template>
 
       <v-card>
-        <v-color-picker v-model="color" input="#000000"></v-color-picker>
+        <v-color-picker v-model="color" @input="emitColorValue" input="#000000"></v-color-picker>
       </v-card>
     </v-menu>
   </div>
@@ -27,6 +27,11 @@ export default {
       hints: true,
       color: '#A8A8A4'
   }),
+  methods: {
+    emitColorValue() {
+      this.$emit("colorValue", this.color);
+    }
+  }
 }
 </script>
 

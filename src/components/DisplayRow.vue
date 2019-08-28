@@ -37,13 +37,10 @@ function enlargeTextOutside() {
     for(var i = 0; i < elements.length; i++) {
         var currentSize = 10 ;
         elements[i].style.fontSize = currentSize + 'px';
-        console.log(elements[i].offsetWidth);
         var elementWidth = elements[i].getBoundingClientRect().width;
         var containerWidth = elements[i].parentElement.getBoundingClientRect().width - 2;
         while(elementWidth < containerWidth) {
             currentSize += 1;
-            console.log('Increased by 2px');
-
             elements[i].style.fontSize = currentSize + 'px';
             elementWidth = elements[i].getBoundingClientRect().width;
 

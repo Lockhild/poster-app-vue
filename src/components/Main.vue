@@ -4,12 +4,12 @@
             <v-row>
                 <v-col class="col line-separator">
                     <div class="scrollable pr-3">
-                        <OptionsPanel v-on:inputRows="getInputRows"/>
+                        <OptionsPanel @inputRows="getInputRows" @posterOptions="emitPosterOptions"/>
                     </div>
                 </v-col>
                 <v-col class="col">
                     <div class="scrollable pr-3">
-                        <DisplayPanel :inputRows="inputRows"/> 
+                        <DisplayPanel :inputRows="inputRows" :posterOptions="posterOptions" /> 
                     </div>
                 </v-col>
             </v-row>
@@ -28,7 +28,8 @@ export default {
     },
     data: function() {
         return {
-            inputRows: Object
+            inputRows: Object,
+            posterOptions: Object
         }
     },
     methods: {
@@ -37,6 +38,9 @@ export default {
         },
         setValue: function(inputValue) {
             this.input = inputValue;
+        },
+        emitPosterOptions(posterOptions) {
+            this.posterOptions = posterOptions;
         }
     }
 }
