@@ -3,7 +3,7 @@
       <v-subheader class="pl-0 label">Poster background</v-subheader>
       <div class="d-flex justify-space-between">
         <div class="color-input d-flex align-center">
-          <input type="text" :value="color">
+          <input type="text" v-model="color" v-on:input="$emit('colorValue', $event.target.value)">
           <ColorPicker @colorValue="emitColorValue" />
         </div>
         <v-btn 

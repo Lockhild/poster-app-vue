@@ -10,6 +10,7 @@
             :min="min"
             :max="max"
             v-model="counter"
+            @input="emitSliderValue"
         ></v-slider>
     </div>
 </template>
@@ -23,6 +24,9 @@
             }
         },
         methods: {
+            emitSliderValue() {
+                this.$emit('sliderValue', this.counter);
+            }
         }
     }
 </script>

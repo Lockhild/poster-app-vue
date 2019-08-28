@@ -8,7 +8,7 @@
                  class="area-row"
                  :style="{
                      background: posterOptions.background + ' !important',
-                     lineHeight: posterOptions.lineHeight 
+                     lineHeight: posterOptions.lineHeight
                   }">
                  
                  <DisplayRow :textRow="row" />

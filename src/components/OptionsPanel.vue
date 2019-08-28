@@ -21,10 +21,21 @@
                        class="mt-n2" />
         </div>
         <v-divider class="mt-6 mb-5"></v-divider>
-        <ColorInput @colorValue="emitPosterOptions" />
+        <ColorInput @colorValue="setColor" />
         <v-divider class="mt-10 mb-6"></v-divider>
-        <Slider label="Line height" min="0" max="100" value="45"/>
-        <Slider class="mt-n4" label="Padding" min="0" max="100" value="65"/>
+        <Slider 
+            label="Line height" 
+            min="0" 
+            max="100" 
+            value="45"
+            @sliderValue="setLineHeight" />
+        <Slider 
+            class="mt-n4" 
+            label="Padding" 
+            min="0" 
+            max="100" 
+            value="65"
+            @sliderValue="setPadding" />
         <v-divider class="mt-1 mb-4"></v-divider>
         <div>
             <v-subheader class="pl-0 label">Choose poster width</v-subheader>
@@ -65,7 +76,7 @@ export default {
             uppercase: false,
             posterOptions: {
                 background: '#fff',
-                lineHeight: 8,
+                lineHeight: 5,
                 padding: 20
             }
         }
@@ -83,8 +94,16 @@ export default {
             this.$delete(this.inputRows, id);
             this.$emit('inputRows', this.inputRows);
         },
-        emitPosterOptions(colorValue) {
+        setColor(colorValue) {
             this.posterOptions.background = colorValue;
+            this.$emit('posterOptions', this.posterOptions);
+        },
+        setLineHeight(sliderValue) {
+            this.posterOptions.lineHeight = sliderValue
+            this.$emit('posterOptions', this.posterOptions);
+        },
+        setPadding(sliderValue) {
+            this.posterOptions.padding = sliderValue
             this.$emit('posterOptions', this.posterOptions);
         }
     },
