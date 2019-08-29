@@ -7,7 +7,7 @@
             </v-btn>
             <v-switch 
                 class="uppercase-switch" 
-                v-model="uppercase" 
+                v-model="posterOptions.uppercase" 
                 label="Auto-uppercase" 
                 color="primary"></v-switch>
         </div>
@@ -21,20 +21,20 @@
                        class="mt-n2" />
         </div>
         <v-divider class="mt-6 mb-5"></v-divider>
-        <ColorInput @colorValue="setColor" />
+        <ColorInput @colorValue="setColor" label="Poster background" />
         <v-divider class="mt-10 mb-6"></v-divider>
         <Slider 
             label="Line height" 
             min="0" 
-            max="100" 
-            value="45"
+            max="400" 
+            value="120"
             @sliderValue="setLineHeight" />
         <Slider 
             class="mt-n4" 
             label="Padding" 
             min="0" 
             max="100" 
-            value="65"
+            value="10"
             @sliderValue="setPadding" />
         <v-divider class="mt-1 mb-4"></v-divider>
         <div>
@@ -73,11 +73,11 @@ export default {
     data: function() {
         return {
             inputRows: ['the sun is up', 'the sky is blue', 'it\'s beautiful', 'and so are you'],
-            uppercase: false,
             posterOptions: {
                 background: '#fff',
-                lineHeight: 5,
-                padding: 20
+                lineHeight: 0,
+                padding: 0,
+                uppercase: false
             }
         }
     },
@@ -99,11 +99,11 @@ export default {
             this.$emit('posterOptions', this.posterOptions);
         },
         setLineHeight(sliderValue) {
-            this.posterOptions.lineHeight = sliderValue
+            this.posterOptions.lineHeight = sliderValue;
             this.$emit('posterOptions', this.posterOptions);
         },
         setPadding(sliderValue) {
-            this.posterOptions.padding = sliderValue
+            this.posterOptions.padding = sliderValue;
             this.$emit('posterOptions', this.posterOptions);
         }
     },

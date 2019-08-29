@@ -1,7 +1,14 @@
 <template>
   <span 
     class="span-text-row"
-    v-bind:style="{fontSize: fontSize + 'px'}" >
+    v-bind:style="{
+        fontFamily: posterRowOptions.fontFamily,
+        fontSize: posterRowOptions.fontSize + 'px',
+        fontWeight: posterRowOptions.fontWeight * 100,
+        marginRight: posterRowOptions.textPosition + 'px',
+        letterSpacing: posterRowOptions.letterSpacing + 'px',
+        color: posterRowOptions.textColor
+    }" >
 
     {{ textRow }}</span>
 </template>
@@ -12,11 +19,11 @@ import { setTimeout } from 'timers';
 export default {
     name: 'DisplayRow',
     props: {
-        textRow: String
+        textRow: String,
+        posterRowOptions: Object
     },
     data: function() {
         return {
-            fontSize: 30
         }
     },
     methods: {
