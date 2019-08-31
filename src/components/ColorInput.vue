@@ -6,8 +6,9 @@
           <input type="text" v-model="color" v-on:input="$emit('colorValue', $event.target.value)">
           <ColorPicker @colorValue="emitColorValue" />
         </div>
-        <input type="file" class="file-input" id="file-input" @change="getFileURL">
-        <label for="file-input" class="file-button">Upload image</label>
+        <input v-if="!url" type="file" class="file-input" id="file-input" @change="getFileURL">
+        <label v-if="!url" for="file-input" class="file-button">Upload image</label>
+        <v-btn v-if="url" outlined color="error" rounded class="delete-image" @click="deleteBackgroundImage">Delete image</v-btn>
       </div>
   </div>
 </template>
@@ -44,6 +45,10 @@
 
             this.$emit("posterImageBackground", this.url);
           }
+        },
+        deleteBackgroundImage() {
+          this.url = null;
+          this.$emit("posterImageBackground", this.url);
         }
       }
     }
@@ -81,14 +86,20 @@
     align-items: center;
     text-transform: uppercase;
     font-weight: 500;
+    letter-spacing: .5px;
     transition: all .3s;
   }
   .file-button:hover {
     cursor: pointer;
     background: #fafcff;
   }
-  .file-input:focus + label {
+  .delete-image {
+    font-size: 13px;
+    letter-spacing: .5px;
+    width: 151px;
+  }
+  /* .file-input:focus + label {
     outline: 1px dotted #000;
 	  outline: -webkit-focus-ring-color auto 5px;
-  }
+  } */
 </style>
