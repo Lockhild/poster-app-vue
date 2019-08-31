@@ -13,7 +13,8 @@
                 class="text-area"
                 :style="{ 
                     padding: posterOptions.padding + 'px',
-                    background: posterOptions.background
+                    backgroundColor: posterOptions.background,
+                    background: 'url(' + posterOptions.posterImageBackground + ')',
                 }"
                 v-on="on">
                 <div v-for="(row, index) in inputRows" 
@@ -74,6 +75,7 @@ export default {
         border: 1px solid #dcdcdc;
         display: flex;
         flex-direction: column;
+        background-size: cover !important;
     }
     .area-row {
         flex-grow: 1;
@@ -82,28 +84,11 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 50px;
+        transition: all .3s;
     }
-    /* .area-row:nth-child(even):before {
-        content: '';
-        position: absolute;
-        height: 1px;
-        width: 90%;
-        background: #dbdbdb;
-        top: 0;
-        left: 5%;
-    }
-    .area-row:nth-child(even):after {
-        content: '';
-        position: absolute;
-        height: 1px;
-        width: 90%;
-        background: #dbdbdb;
-        top: 100%;
-        left: 5%;
-    } */
-    .area-row:nth-child(even) {
-        background: #f5f5f5;
+    .area-row:hover {
+        cursor: pointer;
+        opacity: .9;
     }
     .options-modal {
         padding: 20px 27px;

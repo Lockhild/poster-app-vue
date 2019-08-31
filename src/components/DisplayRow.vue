@@ -26,8 +26,6 @@ export default {
         return {
         }
     },
-    methods: {
-    },
     watch: {
         textRow: function() {
             setTimeout(() => {

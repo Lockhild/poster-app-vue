@@ -21,7 +21,7 @@
                        class="mt-n2" />
         </div>
         <v-divider class="mt-6 mb-5"></v-divider>
-        <ColorInput @colorValue="setColor" label="Poster background" />
+        <ColorInput @colorValue="setColor" @posterImageBackground="setPosterImageBackground" label="Poster background" />
         <v-divider class="mt-10 mb-6"></v-divider>
         <Slider 
             label="Line height" 
@@ -75,6 +75,7 @@ export default {
             inputRows: ['the sun is up', 'the sky is blue', 'it\'s beautiful', 'and so are you'],
             posterOptions: {
                 background: '#fff',
+                posterImageBackground: null,
                 lineHeight: 0,
                 padding: 0,
                 uppercase: false
@@ -104,6 +105,10 @@ export default {
         },
         setPadding(sliderValue) {
             this.posterOptions.padding = sliderValue;
+            this.$emit('posterOptions', this.posterOptions);
+        },
+        setPosterImageBackground(backgroundURL) {
+            this.posterOptions.posterImageBackground = backgroundURL;
             this.$emit('posterOptions', this.posterOptions);
         }
     },
