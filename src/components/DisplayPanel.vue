@@ -15,6 +15,8 @@
                     padding: posterOptions.padding + 'px',
                     backgroundColor: posterOptions.background,
                     background: 'url(' + posterOptions.posterImageBackground + ')',
+                    border: posterOptions.borderWidth + 'px solid ' + posterOptions.borderColor,
+                    borderRadius: posterOptions.borderRadius / 2 + '%',
                 }"
                 v-on="on">
                 <div v-for="(row, index) in inputRows" 
@@ -76,6 +78,7 @@ export default {
         display: flex;
         flex-direction: column;
         background-size: cover !important;
+        overflow: hidden;
     }
     .area-row {
         flex-grow: 1;

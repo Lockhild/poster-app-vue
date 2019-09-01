@@ -1,12 +1,12 @@
 <template>
-    <v-text-field 
+    <v-text-field
         label="Poster row" 
         v-model="text" 
         clearable="clearable"
         counter="25"
         maxlength="25"
         @keyup="$emit('textEntered', text, id)">
-
+        
         <v-icon class="icon" slot="append" dense @click="deleteRow">mdi-delete-outline</v-icon>
     </v-text-field>
 </template>

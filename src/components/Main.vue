@@ -8,7 +8,7 @@
                     </div>
                 </v-col>
                 <v-col class="col">
-                    <div class="scrollable pr-3">
+                    <div class="scrollable pr-3 display-panel">
                         <DisplayPanel :inputRows="inputRows" :posterOptions="posterOptions" /> 
                     </div>
                 </v-col>
@@ -59,11 +59,16 @@ export default {
     }
     .scrollable {
         max-height: 90vh;
-        max-width: 400px;
+        flex-grow: 1;
         overflow-y: auto;
         overflow-x: hidden;
+        display: flex;
+        justify-content: center;
     }
     .line-separator {
         border-right: 1px solid #c2c2c2;
+    }
+    .display-panel {
+        direction: rtl;
     }
 </style>

@@ -43,12 +43,12 @@
             this.url = file.target.result;
             console.log(file);
 
-            this.$emit("posterImageBackground", this.url);
+            this.$emit("imageValue", this.url);
           }
         },
         deleteBackgroundImage() {
           this.url = null;
-          this.$emit("posterImageBackground", this.url);
+          this.$emit("imageValue", this.url);
         }
       }
     }

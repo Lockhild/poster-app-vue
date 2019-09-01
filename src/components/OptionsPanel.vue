@@ -12,16 +12,25 @@
                 color="primary"></v-switch>
         </div>
         <div class="text-inputs mt-6">
-            <LineInput v-for="(item, index) in inputRows" 
-                       v-bind:key="index" 
-                       v-on:textEntered="updateText"
-                       v-on:rowID="deleteRow"
-                       :inputID="index"
-                       :inputText="item"
-                       class="mt-n2" />
+            <transition-group 
+                name="list" 
+                tag="div" 
+                enter-active-class="animated zoomIn faster"
+                leave-active-class="animated zoomOut faster">
+
+                <LineInput v-for="(item, index) in inputRows" 
+                            v-bind:key="index" 
+                            v-on:textEntered="updateText"
+                            v-on:rowID="deleteRow"
+                            :inputID="index"
+                            :inputText="item"
+                            class="mt-n2" />
+            </transition-group>
         </div>
+
         <v-divider class="mt-6 mb-5"></v-divider>
-        <ColorInput @colorValue="setColor" @posterImageBackground="setPosterImageBackground" label="Poster background" />
+
+        <ColorInput @colorValue="setColor" @imageValue="setPosterImageBackground" label="Poster background" />
         <v-divider class="mt-10 mb-6"></v-divider>
         <Slider 
             label="Line height" 
@@ -36,7 +45,27 @@
             max="100" 
             value="10"
             @sliderValue="setPadding" />
+
         <v-divider class="mt-1 mb-4"></v-divider>
+
+        <ColorInput @colorValue="setBorderColor" @imageValue="setPosterBorderBackground" label="Poster border" />
+        <Slider 
+            class="mt-4" 
+            label="Border width" 
+            min="0" 
+            max="100" 
+            value="10"
+            @sliderValue="setBorderWidth" />
+        <Slider 
+            class="mt-n4" 
+            label="Border radius" 
+            min="0" 
+            max="100" 
+            value="10"
+            @sliderValue="setBorderRadius" />
+
+        <v-divider class="mt-4 mb-6"></v-divider>
+
         <div>
             <v-subheader class="pl-0 label">Choose poster width</v-subheader>
             <div class="d-flex align-center">
@@ -45,8 +74,10 @@
                 <input type="number" class="text-input" disabled>
             </div>
         </div>
+
         <v-divider class="mt-9 mb-8"></v-divider>
-        <v-btn 
+
+        <v-btn
             outlined 
             rounded 
             color="primary"
@@ -78,7 +109,11 @@ export default {
                 posterImageBackground: null,
                 lineHeight: 0,
                 padding: 0,
-                uppercase: false
+                uppercase: false,
+                borderColor: '#666',
+                posterBorderBackground: null,
+                borderWidth: 20,
+                borderRadius: 20
             }
         }
     },
@@ -107,8 +142,24 @@ export default {
             this.posterOptions.padding = sliderValue;
             this.$emit('posterOptions', this.posterOptions);
         },
-        setPosterImageBackground(backgroundURL) {
-            this.posterOptions.posterImageBackground = backgroundURL;
+        setPosterImageBackground(imageValue) {
+            this.posterOptions.posterImageBackground = imageValue;
+            this.$emit('posterOptions', this.posterOptions);
+        },
+        setBorderColor(colorValue) {
+            this.posterOptions.borderColor = colorValue;
+            this.$emit('posterOptions', this.posterOptions);
+        },
+        setPosterBorderBackground(imageValue) {
+            this.posterOptions.posterBorderBackground = imageValue;
+            this.$emit('posterOptions', this.posterOptions);
+        },
+        setBorderWidth(sliderValue) {
+            this.posterOptions.borderWidth = sliderValue;
+            this.$emit('posterOptions', this.posterOptions);
+        },
+        setBorderRadius(sliderValue) {
+            this.posterOptions.borderRadius = sliderValue;
             this.$emit('posterOptions', this.posterOptions);
         }
     },
@@ -135,4 +186,16 @@ export default {
         margin-top: 4px;
         padding: 0;
     }
+/* 
+    .list-item {
+    display: inline-block;
+    margin-right: 10px;
+    }
+    .list-enter-active, .list-leave-active {
+    transition: all 1s;
+    }
+    .list-enter, .list-leave-to{
+    opacity: 0;
+    transform: translateY(30px);
+    } */
 </style>
